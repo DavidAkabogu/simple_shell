@@ -16,35 +16,34 @@
 #define TOKEN_BUFFER_SIZE 128
 #define TOKEN_DELIMITER " \t\r\n\a"
 
-/* Pointer to an array of pointers to strings called the "environment" */
+/* Pointer to an array of pointers to strings called the environment */
 extern char **environ;
 
 /**
  * struct shell_data - struct that contains all relevant data on runtime
+ * @status: last status of the shell
+ * @counter: lines counter
+ * @pid: process ID of the shell
  * @av: ARGument Vector
  * @input: command line written by the user
  * @args: tokens of the command line
- * @status: last status of the shell
- * @counter: lines counter
  * @_environ: environment variable
- * @pid: process ID of the shell
  */
 typedef struct shell_data
 {
-	int counter;
 	int status;
+	int counter;
+	char *pid;
 	char **av;
 	char *input;
 	char **args;
 	char **_environ;
-	char *pid;
 } shell_data_t;
 
 /**
  * struct separator_list_s - single linked list
  * @separator: ; | &
  * @next: next node
- * Description: single linked list to store separators
  */
 typedef struct separator_list_s
 {
@@ -56,7 +55,6 @@ typedef struct separator_list_s
  * struct command_list_s - single linked list
  * @line: command line
  * @next: next node
- * Description: single linked list to store command lines
  */
 typedef struct command_list_s
 {
@@ -66,11 +64,10 @@ typedef struct command_list_s
 
 /**
  * struct replacement_variable_list - single linked list
- * @len_var: length of the variable
  * @val: value of the variable
+ * @len_var: length of the variable
  * @len_val: length of the value
  * @next: next node
- * Description: single linked list to store variables
  */
 typedef struct replacement_variable_list
 {
@@ -81,7 +78,7 @@ typedef struct replacement_variable_list
 } replacement_variable_t;
 
 /**
- * struct builtin_s - Builtin struct for command args.
+ * struct builtin_s - Builtin struct for command arguments.
  * @name: The name of the command builtin i.e cd, exit, env
  * @f: data type pointer function.
  */
@@ -110,9 +107,9 @@ void free_replacement_variable_list(replacement_variable_t **head);
 /* string_functions.c */
 int _strcmp(char *s1, char *s2);
 int _strspn(char *s, char *accept);
-char *_strcat(char *dest, const char *src);
-char *_strcpy(char *dest, char *src);
 char *_strchr(char *s, char c);
+char *_strcpy(char *dest, char *src);
+char *_strcat(char *dest, const char *src);
 
 /* string_functions1.c */
 int _strlen(const char *s);
@@ -125,9 +122,9 @@ char *_strdup(const char *s);
 void reverse_string(char *s);
 
 /* check_syntax_error.c */
+int check_first_char(char *input, int *i);
 int check_repeated_char(char *input, int i);
 int check_error_sep_op(char *input, int i, char last);
-int check_first_char(char *input, int *i);
 int check_for_syntax_errors(shell_data_t *datash, char *input);
 void print_syntax_error(shell_data_t *datash, char *input, int i, int bool);
 
@@ -176,10 +173,10 @@ int print_environment_variables(shell_data_t *datash);
 char *get_environment_variable(const char *name, char **_environ);
 
 /* environment1.c */
-char *copy_info(char *name, char *value);
-void set_env(char *name, char *value, shell_data_t *datash);
 int _setenv(shell_data_t *datash);
 int _unsetenv(shell_data_t *datash);
+char *copy_info(char *name, char *value);
+void set_env(char *name, char *value, shell_data_t *datash);
 
 /* change_directory.c */
 void change_to_directory(shell_data_t *datash);
@@ -192,42 +189,42 @@ int change_directory_shell(shell_data_t *datash);
 
 /* standard_library.c */
 int get_integer_length(int n);
-char *convert_integer_to_string(int n);
 int convert_string_to_integer(char *s);
+char *convert_integer_to_string(int n);
 
 /* error_messages.c */
-char *cd_error_message(shell_data_t *, char *, char *, char *);
 char *error_message_get_cd(shell_data_t *datash);
 char *error_message_not_found(shell_data_t *datash);
 char *error_message_exit_shell(shell_data_t *datash);
+char *cd_error_message(shell_data_t *, char *, char *, char *);
 
 /* error_messages1.c */
-char *error_message_get_alias(char **args);
-char *error_message_env(shell_data_t *datash);
 char *error_message_syntax(char **args);
+char *error_message_get_alias(char **args);
 char *error_message_permission(char **args);
+char *error_message_env(shell_data_t *datash);
 char *error_message_path_126(shell_data_t *datash);
 
 /* print_help.c */
 void print_help_env(void);
-void print_help_setenv(void);
-void print_help_unsetenv(void);
-void print_help_general(void);
 void print_help_exit(void);
+void print_help_setenv(void);
+void print_help_general(void);
+void print_help_unsetenv(void);
 
 /* print_help1.c */
 void print_help(void);
-void print_help_alias(void);
 void print_help_cd(void);
+void print_help_alias(void);
+
+/* get_sigint.c */
+void handle_sigint(int sig);
 
 /* get_help.c */
 int get_help(shell_data_t *datash);
 
 /* get_error_code.c */
 int get_error_code(shell_data_t *datash, int eval);
-
-/* get_sigint.c */
-void handle_sigint(int sig);
 
 /* get_builtin_function */
 int (*get_builtin_function(char *cmd))(shell_data_t *datash);
