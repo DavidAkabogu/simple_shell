@@ -85,7 +85,7 @@ typedef struct replacement_variable_list
 typedef struct builtin_s
 {
 	char *name;
-	int (*f)(data_shell *datash);
+	int (*f)(shell_data_t *datash);
 } builtin_t;
 
 /* memory_functions.c */
@@ -177,6 +177,7 @@ int _setenv(shell_data_t *datash);
 int _unsetenv(shell_data_t *datash);
 char *copy_info(char *name, char *value);
 void set_env(char *name, char *value, shell_data_t *datash);
+int compare_environment_variable_name(const char *nenv, const char *name);
 
 /* change_directory.c */
 void change_to_directory(shell_data_t *datash);
