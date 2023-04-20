@@ -26,6 +26,7 @@ void _memcpy(void *newptr, const void *ptr, unsigned int size)
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	void *newptr;
+	unsigned int i;
 
 	if (new_size == 0)
 	{
@@ -42,15 +43,17 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 	if (ptr == NULL)
 	{
-		ptr = malloc(new_size);
-		return (ptr);
+		return (newptr);
 	}
-	else if (ptr != NULL)
+	else
 	{
-		_memcpy(newptr, ptr, old_size);
+		char *p = ptr, *np = newptr;
+
+		for (i = 0; i < old_size; i++)
+			np[i] = p[i];
+
 		free(ptr);
 	}
-
 	return (newptr);
 }
 
@@ -66,27 +69,42 @@ char **_reallocdp(char **ptr, unsigned int old_size, unsigned int new_size)
 	char **newptr;
 	unsigned int i;
 
+	if (new_size == 0)
+	{
+		/* Free all memory allocated to the old pointer array and return NULL */
+		for (i = 0; i < old_size; i++)
+			free(ptr[i]);
+		free(ptr);
+		return (NULL);
+	}
 	if (ptr == NULL)
 	{
-		ptr = malloc(sizeof(char *) * new_size);
-		return (ptr);
+		newptr = malloc(sizeof(char *) * new_size);
+		if (newptr == NULL)
+			return (NULL);
+		/* Initialize new pointers to NULL */
+		for (i = 0; i < new_size; i++)
+			newptr[i] = NULL;
+		return (newptr);
 	}
-
 	if (new_size == old_size)
 		return (ptr);
-
+	/* Allocate new memory for the pointer array */
 	newptr = malloc(sizeof(char *) * new_size);
 	if (newptr == NULL)
+	{
+		for (i = 0; i < old_size; i++)
+			free(ptr[i]);
+		free(ptr);
 		return (NULL);
-
+	}
+	/* Copy pointers from old pointer array to new pointer array */
 	for (i = 0; i < old_size; i++)
 		newptr[i] = ptr[i];
-
+	/* Allocate memory or new pointers in new pointer array, if necessary */
 	for (i = old_size; i < new_size; i++)
 		newptr[i] = NULL;
-
 	free(ptr);
-
 	return (newptr);
 }
 
@@ -97,31 +115,26 @@ char **_reallocdp(char **ptr, unsigned int old_size, unsigned int new_size)
  */
 char *remove_comment(char *in)
 {
-	int i, up_to;
+	int i, j;
+	char *out = in;
 
-	up_to = 0;
-	for (i = 0; in[i]; i++)
+	for (i = 0, j = 0; in[i] != '\0'; i++)
 	{
-		if (in[i] == '#')
+		if (in[i] == '#' && (i == 0 || in[i - 1] == '\n' ||
+					in[i - 1] == ' ' || in[i - 1] == '\t' || in[i - 1] == ';'))
 		{
-			if (i == 0)
-			{
-				free(in);
-				return (NULL);
-			}
-
-			if (in[i - 1] == ' ' || in[i - 1] == '\t' || in[i - 1] == ';')
-				up_to = i;
+			while (in[i] != '\n' && in[i] != '\0')
+				i++;
+		}
+		else
+		{
+			out[j++] = in[i];
 		}
 	}
 
-	if (up_to != 0)
-	{
-		in = _realloc(in, i, up_to + 1);
-		in[up_to] = '\0';
-	}
+	out[j] = '\0';
 
-	return (in);
+	return (out);
 }
 
 /**
