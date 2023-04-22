@@ -146,7 +146,7 @@ void run_shell_loop(shell_data_t *datash)
 	char *input;
 	int loop = 1, i_eof;
 
-	while (loop == 1)
+	while (loop)
 	{
 		write(STDIN_FILENO, ":p ", 4);
 		input = read_input_line(&i_eof);
