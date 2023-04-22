@@ -143,13 +143,12 @@ char *remove_comment(char *in)
  */
 void run_shell_loop(shell_data_t *datash)
 {
-	int loop, i_eof;
 	char *input;
+	int loop = 1, i_eof;
 
-	loop = 1;
 	while (loop == 1)
 	{
-		write(STDIN_FILENO, "^-^ ", 4);
+		write(STDIN_FILENO, ":p ", 4);
 		input = read_input_line(&i_eof);
 		if (i_eof != -1)
 		{
@@ -157,21 +156,19 @@ void run_shell_loop(shell_data_t *datash)
 			if (input == NULL)
 				continue;
 
-			if (check_for_syntax_errors(datash, input) == 1)
+			if (check_for_syntax_errors(datash, input))
 			{
 				datash->status = 2;
-				free(input);
 				continue;
 			}
 			input = replace_variable(input, datash);
 			loop = split_commands_and_operators(datash, input);
-			datash->counter += 1;
-			free(input);
+			datash->counter++;
 		}
 		else
 		{
 			loop = 0;
-			free(input);
 		}
+		free(input);
 	}
 }
