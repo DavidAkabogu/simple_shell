@@ -19,7 +19,7 @@ void _memcpy(void *newptr, const void *ptr, unsigned int size)
 /**
  * _realloc - this function reallocates a memory block.
  * @ptr: pointer to the memory previously allocated.
- * @old_size: size, in bytes, of the allocated space for ptr.
+ * @old_size: size, in bytes, of the allocated memory for ptr.
  * @new_size: new size, in bytes, of the new memory block.
  * Return: returns a pointer or NULL if function fails
  */
@@ -60,7 +60,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 /**
  * _reallocdp - this function reallocates a memory block of a double pointer.
  * @ptr: double pointer to the memory previously allocated.
- * @old_size: size, in bytes, of the allocated space of ptr.
+ * @old_size: size, in bytes, of the allocated memory of ptr.
  * @new_size: new size, in bytes, of the new memory block.
  * Return: returns a pointer or NULL if function fails
  */
@@ -109,7 +109,7 @@ char **_reallocdp(char **ptr, unsigned int old_size, unsigned int new_size)
 }
 
 /**
- * remove_comment - this function deletes comments from the input
+ * remove_comment - this function removes comments from the input
  * @in: input string
  * Return: input without comments
  */
@@ -138,8 +138,8 @@ char *remove_comment(char *in)
 }
 
 /**
- * run_shell_loop - Loop of shell
- * @datash: data relevant (av, input, args)
+ * run_shell_loop - this function runs the shell loop
+ * @datash: relevant data (av, input, args)
  */
 void run_shell_loop(shell_data_t *datash)
 {

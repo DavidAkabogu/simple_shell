@@ -16,17 +16,14 @@
 #define TOKEN_BUFFER_SIZE 128
 #define TOKEN_DELIMITER " \t\r\n\a"
 
-/* Pointer to an array of pointers to strings called the environment */
-extern char **environ;
-
 /**
- * struct shell_data - struct that contains all relevant data on runtime
+ * struct shell_data - this struct contains all relevant data on runtime
  * @status: last status of the shell
  * @counter: lines counter
  * @pid: process ID of the shell
  * @av: ARGument Vector
  * @input: command line written by the user
- * @args: tokens of the command line
+ * @args: arguments of the command line
  * @_environ: environment variable
  */
 typedef struct shell_data
@@ -64,9 +61,9 @@ typedef struct command_list_s
 
 /**
  * struct replacement_variable_list - single linked list
- * @val: value of the variable
- * @len_var: length of the variable
- * @len_val: length of the value
+ * @val: variable value
+ * @len_var: variable length
+ * @len_val: value length
  * @next: next node
  */
 typedef struct replacement_variable_list
@@ -78,8 +75,8 @@ typedef struct replacement_variable_list
 } replacement_variable_t;
 
 /**
- * struct builtin_s - Builtin struct for command arguments.
- * @name: The name of the command builtin i.e cd, exit, env
+ * struct builtin_s - struct for builtin command arguments.
+ * @name: The name of the builtin command i.e ls, cd, echo
  * @f: data type pointer function.
  */
 typedef struct builtin_s
@@ -87,6 +84,9 @@ typedef struct builtin_s
 	char *name;
 	int (*f)(shell_data_t *datash);
 } builtin_t;
+
+/* Pointer to an array of pointers to strings called the environment */
+extern char **environ;
 
 /* memory_functions.c */
 char **_reallocdp(char **ptr, unsigned int old_size, unsigned int new_size);
