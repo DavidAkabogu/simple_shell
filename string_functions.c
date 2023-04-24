@@ -79,15 +79,8 @@ char *_strchr(char *s, char c)
 {
 	while (*s != '\0' && *s != c)
 		s++;
-
-	if (*s == c)
-	{
-		return (s);
-	}
-	else
-	{
-		return (NULL);
-	}
+	
+	return ((*s == c) ? s : NULL);
 }
 /**
  * _strspn - this function gets the length of a prefix substring.
