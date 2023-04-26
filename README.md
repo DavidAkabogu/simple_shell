@@ -26,21 +26,18 @@ TASK 3
 
 A shell script is written to display prompt and execute command lines with arguments and options. The shell script also handles error.
 
-/******
-Task 4
-*******/
+
+TASK 4
 
 An updated shell script from task 3 to handle the `PATH`, and dosen't call `fork` if the file dosen't exist.
 
-/******
-Task 5
-*******/
+
+TASK 5
 
 An updated shell script from task 4 that implements the `exit` and dosen't handle any `exit` built-in arguments.
 
-/******
-Task 6
-*******/
+
+TASK 6
 
 An updated shell script from task 5 that implements the `ENV` built-in which prints the current environment
 
