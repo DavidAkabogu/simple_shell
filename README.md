@@ -4,17 +4,13 @@ SIMPLE SHELL PROJECT BY
 
 WORK DONE PREVIEW
 
-/******
-Task 0
-*******/
+
+TASK 0
 
 In this task, a Manual Page (man page using the groff format) for the simple shell, as well as a Readme file explaining the entire project should be made
 available. Also a file that lists all the names of the authors is very much required for the completion of this task.
 
-/******
-Task 1
-*******/
-
+TASK 1
 In this task, all file must pass through all the checks of the Betty Linter. The task is considered completed when all files meets the Betty requirements.
 
 /******
