@@ -6,24 +6,13 @@
  */
 void reverse_string(char *s)
 {
-	int count = 0, i, j;
-	char *str, temp;
+	int i, len = _strlen(s);
+	char temp;
 
-	while (count >= 0)
+	for (i = 0; i < len / 2; i++)
 	{
-		if (s[count] == '\0')
-			break;
-		count++;
-	}
-	str = s;
-
-	for (i = 0; i < (count - 1); i++)
-	{
-		for (j = i + 1; j > 0; j--)
-		{
-			temp = *(str + j);
-			*(str + j) = *(str + (j - 1));
-			*(str + (j - 1)) = temp;
-		}
+		temp = s[i];
+		s[i] = s[len - 1 - i];
+		s[len - 1 - i] = temp;
 	}
 }
