@@ -74,21 +74,18 @@ TASK 12
 
 An updated shell script from task 11 that handles `Ctrl+C`, the shell should not quit when the user inputs `^C`.
 
-/******
-Task 13
-*******/
+
+TASK 13
 
 An updated shell script from task 12 that 1mplement the `setenv` and `unsetenv` builtin commands.
 
-/******
-Task 14
-*******/
+
+TASK 14
 
 An updated shell script from task 13 that implement the builtin command cd which changes the current directory of the process. Command syntax: `cd [DIRECTORY]`. If no argument is given to `cd` the command must be interpreted like `cd $HOME`.It also has to handle the command `cd -`. You have to update the environment variable `PWD` when you change directory.
 
-/******
-Task 15
-*******/
+
+TASK 15
 
 An updated shell script from task 14 that handles the commands separator. 
 
