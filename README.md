@@ -1,11 +1,8 @@
 SIMPLE SHELL PROJECT BY
 --KING DAVID Akabogu <akabogudavid@gmail.com>
 --ODOCH HERBERT <odoherb@gmail.com>
-**This folder/directory displays all the under-pinnings of a Simple Shell in C programming language**
 
-
-
-WORK DONE
+WORK DONE PREVIEW
 
 /******
 Task 0
