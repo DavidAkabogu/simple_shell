@@ -52,7 +52,7 @@ void add_nodes_to_list(
 		separator_list_t **head_s, command_list_t **head_l, char *input)
 {
 	int i;
-	char *line = _strtok(input, ";|&");
+	char *line;
 
 	input = swap_characters(input, 0);
 	for (i = 0; input[i]; i++)
@@ -66,6 +66,7 @@ void add_nodes_to_list(
 			i++;
 		}
 	}
+	line = _strtok(input, ";|&");
 	while (line != NULL)
 	{
 		line = swap_characters(line, 1);
