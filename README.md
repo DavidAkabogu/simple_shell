@@ -1,5 +1,7 @@
 SIMPLE SHELL PROJECT BY
+
 --KING DAVID Akabogu <akabogudavid@gmail.com>
+
 --ODOCH HERBERT <odoherb@gmail.com>
 
 WORK DONE PREVIEW
@@ -11,17 +13,16 @@ In this task, a Manual Page (man page using the groff format) for the simple she
 available. Also a file that lists all the names of the authors is very much required for the completion of this task.
 
 TASK 1
+
 In this task, all file must pass through all the checks of the Betty Linter. The task is considered completed when all files meets the Betty requirements.
 
-/******
-Task 2
-*******/
+
+TASK 2
 
 A shell script is written to display prompt and execute one-word command lines (commands without arguments and options). The shell script also handles error.
 
-/******
-Task 3
-*******/
+
+TASK 3
 
 A shell script is written to display prompt and execute command lines with arguments and options. The shell script also handles error.
 
