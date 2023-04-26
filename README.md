@@ -1,8 +1,10 @@
 SIMPLE SHELL PROJECT BY
 
---KING DAVID Akabogu <akabogudavid@gmail.com>
+--KING DAVID Akabogu 
+<akabogudavid@gmail.com>
 
---ODOCH HERBERT <odoherb@gmail.com>
+--ODOCH HERBERT 
+<odoherb@gmail.com>
 
 WORK DONE PREVIEW
 
@@ -57,21 +59,18 @@ TASK 9
 
 An updated shell script from task 6 that impliments the getline function.
 
-/******
-Task 10
-*******/
+
+TASK 10
 
 An updated shell script from task 9 that does not use `strtok`.
 
-/******
-Task 11
-*******/
+
+TASK 10
 
 An updated shell script from task 10 that handles arguments for the built-in `exit`. Usage: exit status, where status is an integer used to exit the shell. 
 
-/******
-Task 12
-*******/
+
+TASK 12
 
 An updated shell script from task 11 that handles `Ctrl+C`, the shell should not quit when the user inputs `^C`.
 
