@@ -4,7 +4,7 @@
  * swap_characters - this function swaps | and & for non-printed chars
  * @input: input string
  * @bool: type of swap
- * Return: swapped string
+ * Return: returns swapped string
  */
 char *swap_characters(char *input, int bool)
 {
@@ -44,18 +44,17 @@ char *swap_characters(char *input, int bool)
 
 /**
  * add_nodes_to_list - this function adds separators and cmd lines in the lists
- * @head_s: head of separator list
- * @head_l: head of command lines list
+ * @head_s: pointer to head node of separator list
+ * @head_l: pointer to head node of command lines list
  * @input: input string
  */
 void add_nodes_to_list(
 		separator_list_t **head_s, command_list_t **head_l, char *input)
 {
 	int i;
-	char *line;
+	char *line = _strtok(input, ";|&");
 
 	input = swap_characters(input, 0);
-
 	for (i = 0; input[i]; i++)
 	{
 		if (input[i] == ';')
@@ -67,32 +66,26 @@ void add_nodes_to_list(
 			i++;
 		}
 	}
-
-	line = _strtok(input, ";|&");
-	do {
+	while (line != NULL)
+	{
 		line = swap_characters(line, 1);
 		add_command_node_end(head_l, line);
 		line = _strtok(NULL, ";|&");
-	} while (line != NULL);
-
+	}
 }
 
 /**
- * move_to_next - go to the next command line stored
+ * move_to_next - this function moves to the next stored command line
  * @list_s: separator list
  * @list_l: command line list
- * @datash: data structure
+ * @datash: data structure pointer
  */
 void move_to_next(
 		separator_list_t **list_s, command_list_t **list_l, shell_data_t *datash)
 {
-	int loop_sep;
-	separator_list_t *ls_s;
-	command_list_t *ls_l;
-
-	loop_sep = 1;
-	ls_s = *list_s;
-	ls_l = *list_l;
+	int loop_sep = 1;
+	separator_list_t *ls_s = *list_s;
+	command_list_t *ls_l = *list_l;
 
 	while (ls_s != NULL && loop_sep)
 	{
@@ -113,27 +106,22 @@ void move_to_next(
 		if (ls_s != NULL && !loop_sep)
 			ls_s = ls_s->next;
 	}
-
 	*list_s = ls_s;
 	*list_l = ls_l;
 }
 
 /**
  * split_commands_and_operators - splits command lines according to
- * the separators ;, | and &, and executes them
+ *				the separators ;, | and &, and executes them
  * @datash: data structure
  * @input: input string
  * Return: 0 to exit, 1 to continue
  */
 int split_commands_and_operators(shell_data_t *datash, char *input)
 {
-
-	separator_list_t *head_s, *list_s;
-	command_list_t *head_l, *list_l;
 	int loop;
-
-	head_s = NULL;
-	head_l = NULL;
+	separator_list_t *list_s, *head_s = NULL;
+	command_list_t *list_l, *head_l = NULL;
 
 	add_nodes_to_list(&head_s, &head_l, input);
 
@@ -155,28 +143,22 @@ int split_commands_and_operators(shell_data_t *datash, char *input)
 		if (list_l != NULL)
 			list_l = list_l->next;
 	}
-
 	free_separator_list(&head_s);
 	free_command_list(&head_l);
 
-	if (loop == 0)
-		return (0);
-	return (1);
+	return ((loop == 0) ? 0 : 1);
 }
 
 /**
- * split_input_line - tokenizes the input string
+ * split_input_line - this function tokenizes the input string
  * @input: input string.
- * Return: string splitted.
+ * Return: returns the splitted string
  */
 char **split_input_line(char *input)
 {
-	size_t bsize;
-	size_t i;
-	char **tokens;
-	char *token;
+	char *token, **tokens;
+	size_t i, bsize = TOKEN_BUFFER_SIZE;
 
-	bsize = TOKEN_BUFFER_SIZE;
 	tokens = malloc(sizeof(char *) * (bsize));
 	if (tokens == NULL)
 	{
@@ -202,6 +184,5 @@ char **split_input_line(char *input)
 		token = _strtok(NULL, TOKEN_DELIMITER);
 		tokens[i] = token;
 	}
-
 	return (tokens);
 }

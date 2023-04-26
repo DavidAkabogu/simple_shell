@@ -200,6 +200,9 @@ char *error_message_exit_shell(shell_data_t *datash);
 char *cd_error_message(shell_data_t *, char *, char *, char *);
 
 /* error_messages1.c */
+char *error_message_syntax(char **args);
+char *error_message_get_alias(char **args);
+char *error_message_permission(char **args);
 char *error_message_env(shell_data_t *datash);
 char *error_message_path_126(shell_data_t *datash);
 
