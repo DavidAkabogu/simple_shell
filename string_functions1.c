@@ -66,7 +66,7 @@ int cmp_chars(char str[], const char *delim)
 char *_strtok(char str[], const char *delim)
 {
 	char *current_char;
-        unsigned int i, is_token_found;
+	unsigned int i, is_token_found;
 	static char *token_start, *token_end;
 
 	if (str != NULL)
