@@ -3,17 +3,16 @@
 /**
  * check_for_environment_variables - this function checks
  *					if the typed variable is an env variable
- * @h: head of linked list
- * @in: input string
+ * @h: pointer to head of linked list
+ * @in: pointer to input string
  * @data: data structure
  */
 void check_for_environment_variables(
 		replacement_variable_t **h, char *in, shell_data_t *data)
 {
 	int row, chr, j, lval;
-	char **_envr;
+	char **_envr = data->_environ;
 
-	_envr = data->_environ;
 	for (row = 0; _envr[row]; row++)
 	{
 		for (j = 1, chr = 0; _envr[row][chr]; chr++)
@@ -32,31 +31,26 @@ void check_for_environment_variables(
 				break;
 		}
 	}
-
 	for (j = 0; in[j]; j++)
 	{
 		if (in[j] == ' ' || in[j] == '\t' || in[j] == ';' || in[j] == '\n')
 			break;
 	}
-
 	add_replacement_variable_node(h, j, NULL, 0);
 }
 
 /**
- * replace_variables - check if the typed variable is $$ or $?
+ * replace_variables - this function checks if the typed variable is $$ or $?
  * @h: head of the linked list
  * @in: input string
  * @st: last status of the Shell
  * @data: data structure
- * Return: no return
+ * Return: returns an integer
  */
 int replace_variables(
 		replacement_variable_t **h, char *in, char *st, shell_data_t *data)
 {
-	int i, lst, lpd;
-
-	lst = _strlen(st);
-	lpd = _strlen(data->pid);
+	int i, lst = _strlen(st), lpd = _strlen(data->pid);
 
 	for (i = 0; in[i]; i++)
 	{
@@ -80,7 +74,6 @@ int replace_variables(
 				check_for_environment_variables(h, in + i, data);
 		}
 	}
-
 	return (i);
 }
 
@@ -95,10 +88,9 @@ int replace_variables(
 char *get_replaced_input(
 		replacement_variable_t **head, char *input, char *new_input, int nlen)
 {
-	replacement_variable_t *indx;
 	int i, j, k;
+	replacement_variable_t *indx = *head;
 
-	indx = *head;
 	for (j = i = 0; i < nlen; i++)
 	{
 		if (input[j] == '$')
@@ -132,12 +124,11 @@ char *get_replaced_input(
 			j++;
 		}
 	}
-
 	return (new_input);
 }
 
 /**
- * replace_variable - calls functions to replace string into vars
+ * replace_variable - this function calls functions to replace string into vars
  * @input: input string
  * @datash: data structure
  * Return: replaced string
