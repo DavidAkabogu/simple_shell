@@ -41,22 +41,19 @@ TASK 6
 
 An updated shell script from task 5 that implements the `ENV` built-in which prints the current environment
 
-/******
-Task 7
-*******/
+
+TASK 7
 
 In this task,  a blog post describing step by step what happens when you type ls -l *.c and hit Enter in a shell must be written and publlished. It should
 also be posted on LinkedIn and other social media platforms.
 
-/******
-Task 8
-*******/
+
+TASK 8
 
 A group class work that should be tested in a single respository with every team contributing to the repository.
 
-/******
-Task 9
-*******/
+
+TASK 9
 
 An updated shell script from task 6 that impliments the getline function.
 
