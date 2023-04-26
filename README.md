@@ -4,6 +4,9 @@ SIMPLE SHELL PROJECT BY
 **This folder/directory displays all the under-pinnings of a Simple Shell in C programming language**
 
 
+
+WORK DONE
+
 /******
 Task 0
 *******/
