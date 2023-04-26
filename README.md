@@ -87,17 +87,15 @@ An updated shell script from task 13 that implement the builtin command cd which
 
 TASK 15
 
-An updated shell script from task 14 that handles the commands separator. 
+An updated shell script from task 14 that handles the commands separator
 
-/******
-Task 16
-*******/
+
+TASK 16
 
 An updated shell script from task 15 handles the `&&` and `||` shell logical operators.
 
-/******
-Task 17
-*******/
+
+TASK 17
 
 An updated shell script from task 16 that implements the `alias` builtin command.
 
@@ -106,15 +104,13 @@ Usage: alias `[name[='value'] ...]`
 `alias name [name2 ...]`: Prints the aliases `name`, `name2`, etc 1 per line, in the form `name='value'`.
 `alias name='value' [...]`: Defines an alias for each `name` whose `value` is given. If `name` is already an alias, replaces its value with `value`.
 
-/******
-Task 18
-*******/
+
+TASK 18
 
 An updated shell script from task 17 that handles variables replacement, and also handles the `$?` variable and the `$$` variable.
 
-/******
-Task 19
-*******/
+
+TASK 19
 
 An updated shell script from task 18 that handles comments (`#`).
 
