@@ -27,7 +27,7 @@ int check_repeated_char(char *input, int i)
  */
 int check_error_sep_op(char *input, int i, char last)
 {
-	int count;
+	int count = 0;
 
 	if (*input == '\0')
 		return (0);
@@ -36,23 +36,35 @@ int check_error_sep_op(char *input, int i, char last)
 		return (check_error_sep_op(input + 1, i + 1, last));
 
 	if (*input == ';')
-	{
 		if (last == '|' || last == '&' || last == ';')
 			return (i);
-	}
-	else if (*input == '|' || *input == '&')
+
+	if (*input == '|')
 	{
-		if (last == ';' || last == *input)
+		if (last == ';' || last == '&')
 			return (i);
 
-		count = check_repeated_char(input, 0);
-
-		if (count == 0 || count > 1)
+		if (last == '|')
+		{
+			count = check_repeated_char(input, 0);
+			if (count == 0 || count > 1)
+				return (i);
+		}
+	}
+	if (*input == '&')
+	{
+		if (last == ';' || last == '|')
 			return (i);
+
+		if (last == '&')
+		{
+			count = check_repeated_char(input, 0);
+			if (count == 0 || count > 1)
+				return (i);
+		}
 	}
 	return (check_error_sep_op(input + 1, i + 1, *input));
 }
-
 /**
  * check_first_char - this function finds the index of the first char
  * @input: input string
