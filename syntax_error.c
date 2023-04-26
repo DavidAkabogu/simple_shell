@@ -113,10 +113,9 @@ void print_syntax_error(shell_data_t *datash, char *input, int i, int bool)
 
 	error = malloc(sizeof(char) * (length));
 	if (error == NULL)
-	{
 		free(counter);
 		return;
-	}
+
 	_strcpy(error, datash->av[0]);
 	_strcat(error, ": ");
 	_strcat(error, counter);
