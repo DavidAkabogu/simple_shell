@@ -114,25 +114,22 @@ TASK 19
 
 An updated shell script from task 18 that handles comments (`#`).
 
-/******
-Task 20
-*******/
+
+TASK 20
 
 An updated shell script from task 19 that implements the `help` built-in.
 Usage: `help [BUILTIN]`.
 
-/******
-Task 21
-*******/
+
+TASK 21
 
 An updated shell script from task 20 that implements the history built-in, without any argument.
 The history built-in displays the history list, one command by line, preceded with line numbers (starting at `0`)
 On `exit`, write the entire history, without line numbers, to a file named `.simple_shell_history` in the directory `$HOME`.
 When the shell starts, read the file `.simple_shell_history` in the directory `$HOME` if it exists, and set the first line number to the total number of lines in the file modulo `4096`.
 
-/******
-Task 22
-*******/
+
+TASK 22
 
 An updated shell script from task 21 that implements files input.
 Usage: `simple_shell [filename]`
